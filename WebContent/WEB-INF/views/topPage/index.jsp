@@ -3,5 +3,6 @@
 <c:import url="../layout/app.jsp">
     <c:param name="content">
         <h2>My Clothesへようこそ</h2>
+        <p><a href="<c:url value='/users/new' />">新規会員登録</a></p>
     </c:param>
 </c:import>
