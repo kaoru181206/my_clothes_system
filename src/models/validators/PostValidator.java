@@ -21,6 +21,11 @@ public class PostValidator {
             errors.add(content_error);
         }
 
+        String price_error = _validatePrice(p.getPrice());
+        if(!price_error.equals("")){
+            errors.add(price_error);
+        }
+
         return errors;
 
     }
@@ -37,6 +42,14 @@ public class PostValidator {
         if(content == null || content.equals("")) {
             return "内容を入力してください。";
             }
+
+        return "";
+    }
+
+    private static String _validatePrice(Integer price) {
+        if(price == null ||  price.equals("")) {
+            return "値段を入力してください。";
+        }
 
         return "";
     }

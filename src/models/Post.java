@@ -22,7 +22,7 @@ import javax.persistence.Table;
         query = "SELECT p FROM Post AS p ORDER BY p.id DESC"
     ),
     @NamedQuery(
-        name = "getPostCount",
+        name = "getPostsCount",
         query = "SELECT COUNT(p) FROM Post AS p"
     ),
 })
@@ -96,6 +96,14 @@ public class Post {
 
     public void setBrandName(String brandName) {
         this.brandName = brandName;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 
     public String getContent() {
