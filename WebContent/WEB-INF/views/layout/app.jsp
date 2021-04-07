@@ -12,7 +12,17 @@
     <body>
         <div id = "wrapper">
             <div id = "header">
-                <h1>My Clothes</h1>
+                <div id = "header_menu">
+                    <h1><a href="<c:url value='/posts/index' />">My Clothes</a></h1>&nbsp;&nbsp;&nbsp;
+                    <a href="<c:url value='/posts/new' />">投稿する</a>&nbsp;
+                    <a href="<c:url value='/users/mypage' />">マイページ</a>&nbsp;
+                </div>
+                <c:if test="${sessionScope.login_user != null}">
+                    <div id="user_name">
+                        <c:out value="${sessionScope.login_user.name}" />&nbsp;さん&nbsp;&nbsp;&nbsp;
+                        <a href="<c:url value='/logout' />">ログアウト</a>
+                    </div>
+                </c:if>
             </div>
             <div id = "content">
                 ${param.content}
