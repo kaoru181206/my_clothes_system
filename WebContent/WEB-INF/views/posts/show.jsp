@@ -43,7 +43,7 @@
                         </tr>
                         <tr>
                             <th>いいね数</th>
-                            <td><c:out value="${podt.likes }" /></td>
+                            <td><c:out value="${post.likes }" /></td>
                         </tr>
                         <tr>
                             <th>投稿日時</th>
