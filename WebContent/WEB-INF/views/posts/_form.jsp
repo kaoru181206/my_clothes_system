@@ -42,8 +42,8 @@
 
 <label for="post_flag">投稿方法</label><br />
 <select name="post_flag">
-    <option value="0"<c:if test="${post.post_flag == 0}">select</c:if>>共有</option>
-    <option value="1"<c:if test="${post.post_flag == 1}">select</c:if>>共有しない</option>
+    <option value="0"<c:if test="${post.post_flag == 0}">select</c:if>>共有しない</option>
+    <option value="1"<c:if test="${post.post_flag == 1}">select</c:if>>共有する</option>
 </select>
 <br /><br />
 

@@ -41,7 +41,7 @@ public class PostsIndexServlet extends HttpServlet {
         } catch(Exception e) {
             page = 1;
         }
-        List<Post> posts = em.createNamedQuery("getAllPosts", Post.class)
+        List<Post> posts = em.createNamedQuery("getPostShare", Post.class)
                                   .setFirstResult(15 * (page - 1))
                                   .setMaxResults(15)
                                   .getResultList();

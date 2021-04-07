@@ -23,7 +23,14 @@
                     <tr class="row${status.count % 2}">
                         <td class="post_name"><c:out value="${post.user.name}" /></td>
                         <td class="post_brandName"><c:out value="${post.brandName}" /></td>
-                        <td class="post_category"><c:out value="${post.category}" /></td>
+                        <td class="post_category">
+                            <c:choose>
+                                <c:when test="${post.category == 0}">アウター</c:when>
+                                <c:when test="${post.category == 1}">トップス</c:when>
+                                <c:when test="${post.category == 2}">パンツ</c:when>
+                                <c:when test="${post.category == 3}">スニーカー</c:when>
+                                <c:when test="${post.category == 4}">小物類</c:when>
+                            </c:choose>
                         <td class="post_date"><fmt:formatDate value='${post.purchase_date}' pattern='yyyy-MM-dd' /></td>
                         <td class="post_like">︎${post.likes}</td>
                         <td class="post_action"><a href="<c:url value='/posts/show?id=${post.id}' />">詳細を見る</a></td>

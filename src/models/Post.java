@@ -25,6 +25,14 @@ import javax.persistence.Table;
         name = "getPostsCount",
         query = "SELECT COUNT(p) FROM Post AS p"
     ),
+    @NamedQuery(
+        name = "getPostNotShare" ,
+        query = "SELECT p FROM Post AS p WHERE p.post_flag = 0"
+    ),
+    @NamedQuery(
+            name = "getPostShare" ,
+            query = "SELECT p FROM Post AS p WHERE p.post_flag = 1"
+        )
 })
 @Entity
 public class Post {
@@ -144,6 +152,14 @@ public class Post {
 
     public void setCategory(Integer category) {
         this.category = category;
+    }
+
+    public Integer getLikes(){
+        return likes;
+    }
+
+    public void setLikes(Integer likes){
+        this.likes = likes;
     }
 
 
