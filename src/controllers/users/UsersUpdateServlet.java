@@ -82,11 +82,11 @@ public class UsersUpdateServlet extends HttpServlet {
                 em.getTransaction().begin();
                 em.getTransaction().commit();
                 em.close();
-                request.getSession().setAttribute("flush", "更新が完了しました。");
+                request.getSession().setAttribute("flush", "アカウント情報を更新しました。再度ログインしてください。");
 
                 request.getSession().removeAttribute("user_id");
 
-                response.sendRedirect(request.getContextPath() + "/login");
+                response.sendRedirect(request.getContextPath() + "/logout");
             }
         }
     }
