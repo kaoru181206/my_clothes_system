@@ -15,7 +15,7 @@
                 <div id = "header_menu">
                     <h1><a href="<c:url value='/posts/index' />">My Clothes</a></h1>&nbsp;&nbsp;&nbsp;
                     <a href="<c:url value='/posts/new' />">投稿する</a>&nbsp;
-                    <a href="<c:url value='/users/mypage' />">マイページ</a>&nbsp;
+                    <a href="<c:url value='/users/index' />">マイページ</a>&nbsp;
                 </div>
                 <c:if test="${sessionScope.login_user != null}">
                     <div id="user_name">

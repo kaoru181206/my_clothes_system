@@ -114,6 +114,18 @@ table#report_list .report_action {
     width: 13%;
 }
 
+table#account {
+    width: 50%;
+}
+
+table#account th{
+    width: 25%;
+}
+
+table#account td{
+    width: 25%;
+}
+
 #header_menu {
     width: 57%;
     padding-top: 17px;

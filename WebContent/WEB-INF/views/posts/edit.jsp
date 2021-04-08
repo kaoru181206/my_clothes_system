@@ -5,8 +5,9 @@
         <c:choose>
             <c:when test="${post != null}">
                 <h2>購入品 編集ページ</h2>
-                <form method="POST" action="<c:url value='/posts/update' />"></form>
+                <form method="POST" action="<c:url value='/posts/update' />">
                 <c:import url="_form.jsp" />
+                </form>
             </c:when>
             <c:otherwise>
                 <h2>お探しのデータは見つかりませんでした。</h2>
