@@ -15,16 +15,16 @@ import models.Post;
 import utils.DBUtil;
 
 /**
- * Servlet implementation class PostsIndexServlet
+ * Servlet implementation class PostsMyIndexServlet
  */
-@WebServlet("/posts/index")
-public class PostsIndexServlet extends HttpServlet {
+@WebServlet("/posts/my")
+public class PostsMyIndexServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PostsIndexServlet() {
+    public PostsMyIndexServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,18 +35,19 @@ public class PostsIndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
+
         int page;
         try{
             page = Integer.parseInt(request.getParameter("page"));
         } catch(Exception e) {
             page = 1;
         }
-        List<Post> posts = em.createNamedQuery("getAllPosts", Post.class)
+        List<Post> posts = em.createNamedQuery("getPostsNotShare", Post.class)
                                   .setFirstResult(15 * (page - 1))
                                   .setMaxResults(15)
                                   .getResultList();
 
-        long posts_count = (long)em.createNamedQuery("getPostsCount", Long.class)
+        long posts_count = (long)em.createNamedQuery("getPostsNotShareCount", Long.class)
                                      .getSingleResult();
 
         em.close();
@@ -59,7 +60,7 @@ public class PostsIndexServlet extends HttpServlet {
             request.getSession().removeAttribute("flush");
         }
 
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/posts/index.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/posts/my_index.jsp");
         rd.forward(request, response);
     }
 

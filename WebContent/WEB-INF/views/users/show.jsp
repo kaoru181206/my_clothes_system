@@ -24,6 +24,8 @@
 
                 <p><a href="<c:url value='/users/edit?id=${user.id}' />">アカウント情報を編集する</a></p>
 
+                <p><a href="<c:url value='/posts/my' />">My投稿 一覧</a></p>
+
 
             </c:when>
             <c:otherwise>

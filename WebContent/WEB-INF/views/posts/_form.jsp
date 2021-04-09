@@ -40,12 +40,6 @@
 <textarea name="content" rows="10" cols="50">${post.content}</textarea>
 <br /><br />
 
-<label for="post_flag">投稿方法</label><br />
-<select name="post_flag">
-    <option value="0"<c:if test="${post.post_flag == 0}">select</c:if>>共有しない</option>
-    <option value="1"<c:if test="${post.post_flag == 1}">select</c:if>>共有する</option>
-</select>
-<br /><br />
 
 <input type="hidden" name="_token" value="${_token}" />
 <button type="submit">投稿</button>

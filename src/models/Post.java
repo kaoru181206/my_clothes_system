@@ -24,15 +24,8 @@ import javax.persistence.Table;
     @NamedQuery(
         name = "getPostsCount",
         query = "SELECT COUNT(p) FROM Post AS p"
-    ),
-    @NamedQuery(
-        name = "getPostNotShare" ,
-        query = "SELECT p FROM Post AS p WHERE p.post_flag = 0"
-    ),
-    @NamedQuery(
-            name = "getPostShare" ,
-            query = "SELECT p FROM Post AS p WHERE p.post_flag = 1"
-        )
+    )
+
 })
 @Entity
 public class Post {
@@ -68,8 +61,6 @@ public class Post {
     @Column(name = "updated_at", nullable = false)
     private Timestamp updated_at;
 
-    @Column(name = "post_flag", nullable = false)
-    private Integer post_flag;
 
     @Column(name = "category", nullable = false)
     private Integer category;
@@ -138,13 +129,6 @@ public class Post {
         this.updated_at = updated_at;
     }
 
-    public Integer getPost_flag() {
-        return post_flag;
-    }
-
-    public void setPost_flag(Integer post_flag) {
-        this.post_flag = post_flag;
-    }
 
     public Integer getcategory() {
         return category;

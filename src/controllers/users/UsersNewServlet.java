@@ -33,6 +33,8 @@ public class UsersNewServlet extends HttpServlet {
         request.setAttribute("_token", request.getSession().getId());
         request.setAttribute("user", new User());
 
+
+        //新規会員登録ページへ
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/users/new.jsp");
         rd.forward(request, response);
     }

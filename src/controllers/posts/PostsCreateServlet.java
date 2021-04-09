@@ -57,7 +57,7 @@ public class PostsCreateServlet extends HttpServlet {
             p.setPrice(Integer.parseInt(request.getParameter("price")));
             p.setCategory(Integer.parseInt(request.getParameter("category")));
             p.setContent(request.getParameter("content"));
-            p.setPost_flag(Integer.parseInt(request.getParameter("post_flag")));
+
 
             p.setLikes(0);
 

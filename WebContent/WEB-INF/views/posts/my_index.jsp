@@ -3,12 +3,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
-        <c:if test="${flush != null}">
-            <div id="flush_success">
-                <c:out value="${flush}"></c:out>
-            </div>
-        </c:if>
-        <h2>投稿 一覧【共有】</h2>
+
+        <h2>自分の投稿 一覧【共有しない】</h2>
         <table id="post_list">
             <tbody>
                 <tr>
@@ -54,6 +50,6 @@
             </c:forEach>
         </div>
 
-        <p><a href="<c:url value='/posts/new' />">新規購入品投稿</a></p>
+
     </c:param>
 </c:import>
