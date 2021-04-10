@@ -48,7 +48,6 @@ public class PostsUpdateServlet extends HttpServlet {
             p.setPrice(Integer.parseInt(request.getParameter("price")));
             p.setCategory(Integer.parseInt(request.getParameter("category")));
             p.setContent(request.getParameter("content"));
-            p.setPost_flag(Integer.parseInt(request.getParameter("post_flag")));
             p.setUpdated_at(new Timestamp(System.currentTimeMillis()));
 
 

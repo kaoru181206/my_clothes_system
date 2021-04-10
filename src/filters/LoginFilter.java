@@ -18,7 +18,7 @@ import models.User;
 /**
  * Servlet Filter implementation class LoginFilter
  */
-@WebFilter("/*")
+@WebFilter(urlPatterns={"/posts/index","/posts/new","/users/index","/users/edit","/posts/show","/posts/edit"})
 public class LoginFilter implements Filter {
 
     /**

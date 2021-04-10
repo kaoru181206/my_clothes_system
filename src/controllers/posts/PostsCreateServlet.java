@@ -58,8 +58,9 @@ public class PostsCreateServlet extends HttpServlet {
             p.setCategory(Integer.parseInt(request.getParameter("category")));
             p.setContent(request.getParameter("content"));
 
-
+          //いいね数に初期値０を設定
             p.setLikes(0);
+
 
             Timestamp currentTime = new Timestamp(System.currentTimeMillis());
             p.setCreated_at(currentTime);

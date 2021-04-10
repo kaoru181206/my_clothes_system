@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.Post;
+import models.User;
 import utils.DBUtil;
 
 /**
@@ -35,6 +36,7 @@ public class PostsMyIndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
+        User login_user = (User)request.getSession().getAttribute("login_user");
 
         int page;
         try{
@@ -42,12 +44,14 @@ public class PostsMyIndexServlet extends HttpServlet {
         } catch(Exception e) {
             page = 1;
         }
-        List<Post> posts = em.createNamedQuery("getPostsNotShare", Post.class)
+        List<Post> posts = em.createNamedQuery("getMyAllPosts", Post.class)
+                                  .setParameter("user", login_user)
                                   .setFirstResult(15 * (page - 1))
                                   .setMaxResults(15)
                                   .getResultList();
 
-        long posts_count = (long)em.createNamedQuery("getPostsNotShareCount", Long.class)
+        long posts_count = (long)em.createNamedQuery("getMyPostsCount", Long.class)
+                                     .setParameter("user", login_user)
                                      .getSingleResult();
 
         em.close();
@@ -55,6 +59,7 @@ public class PostsMyIndexServlet extends HttpServlet {
         request.setAttribute("posts", posts);
         request.setAttribute("posts_count", posts_count);
         request.setAttribute("page", page);
+
         if(request.getSession().getAttribute("flush") != null) {
             request.setAttribute("flush", request.getSession().getAttribute("flush"));
             request.getSession().removeAttribute("flush");
