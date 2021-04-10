@@ -8,7 +8,10 @@
                 <c:out value="${flush}"></c:out>
             </div>
         </c:if>
+
         <h2>投稿 一覧</h2>
+        <br /><br />
+
         <table id="post_list">
             <tbody>
                 <tr>
@@ -31,6 +34,7 @@
                                 <c:when test="${post.category == 3}">スニーカー</c:when>
                                 <c:when test="${post.category == 4}">小物類</c:when>
                             </c:choose>
+                        </td>
                         <td class="post_date"><fmt:formatDate value='${post.purchase_date}' pattern='yyyy-MM-dd' /></td>
                         <td class="post_like">︎${post.likes}</td>
                         <td class="post_action"><a href="<c:url value='/posts/show?id=${post.id}' />">詳細を見る</a></td>

@@ -23,12 +23,17 @@ h1 {
     padding-left: 3%;
     font-size: 24px;
     color: #eeeeee;
+    font-weight: 10px;
 }
 
 h2 {
+    display:inline;
     font-size: 36px;
-    margin-bottom: 15px;
+    border-bottom: 6px double #000;
 }
+
+}
+
 
 li {
     margin-top: 10px;
@@ -45,23 +50,60 @@ a {
     color: #24738e;
 }
 
-table, tr, th, td {
-    border: 1px solid #cccccc;
+a:hover {
+    color:#FF0000;
 }
+
+
 
 table {
-    width: 100%;
-    table-layout: fixed;
+    border-collapse: collapse;
+  margin: 0 auto;
+  padding: 0;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 0 15px -6px #00000073;
 }
 
-th {
-    width: 26%;
-    padding: 10px 2%;
+table tr {
+  background-color: #fff;
 }
 
-td {
-    width: 66%;
-    padding: 10px 2%;
+table th,table td {
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+table  th {
+  text-align: center;
+  width: 17%;
+  padding: 10px;
+  font-size: 14px;
+  padding: 15px;
+  background-color: #808080;
+  color:#fff;
+}
+
+table tr{
+  text-align: center;
+  width: 17%;
+  padding: 20px 0;
+  background-color: #fff;
+  color:#3a3a3a;
+}
+
+table tr:hover{
+  background-color: #d4faff;
+}
+
+#account {
+    width: 60%;
+    margin-left: auto;
+
+}
+#account th{
+    width: 30%;
 }
 
 button {
@@ -69,7 +111,13 @@ button {
     padding: 5px 10px;
 }
 
+
 #footer {
+    text-align: center;
+
+}
+
+#content {
     text-align: center;
 }
 
@@ -93,38 +141,7 @@ button {
     background-color: #f8d7da;
 }
 
-table#report_list th {
-    font-weight: bold;
-    padding: 10px 2%;
-}
 
-table#report_list .report_name {
-    width: 20%;
-    padding: 10px 2%;
-}
-table#report_list .report_date {
-    width: 20%;
-}
-
-table#report_list .report_title {
-    width: 37%;
-}
-
-table#report_list .report_action {
-    width: 13%;
-}
-
-table#account {
-    width: 50%;
-}
-
-table#account th{
-    width: 25%;
-}
-
-table#account td{
-    width: 25%;
-}
 
 #header_menu {
     width: 57%;
@@ -132,6 +149,8 @@ table#account td{
     padding-left: 3%;
     display: inline-block;
 }
+
+
 
 #user_name {
     color: #cccccc;
@@ -153,6 +172,8 @@ h1 {
     font-size: 24px;
     display: inline;
 }
+
+
 
 select {
     height: 30px;

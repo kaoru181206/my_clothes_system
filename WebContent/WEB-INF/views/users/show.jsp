@@ -5,8 +5,10 @@
     <c:param name="content">
         <c:choose>
             <c:when test="${user != null}">
+
                 <h2>マイページ</h2>
-                <p>アカウント情報</p>
+                <br /><br />
+                <p>【アカウント情報】</p>
 
                 <table id="account">
                     <tbody>

@@ -10,7 +10,7 @@
 
     </div>
 </c:if>
-<label for="purchase_date">購入日</label>
+<label for="purchase_date">購入日</label><br />
 <input type="date" name="purchase_date" value="<fmt:formatDate value='${post.purchase_date}' pattern='yyyy-MM-dd' />" />
 <br ><br />
 

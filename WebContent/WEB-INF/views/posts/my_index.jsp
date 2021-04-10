@@ -10,6 +10,7 @@
         </c:if>
 
         <h2>自分の投稿 一覧</h2>
+        <br /><br />
         <table id="post_list">
             <tbody>
                 <tr>
@@ -42,7 +43,8 @@
         </table>
 
         <div id="pagination">
-            （全 ${posts_count} 件）<br />
+            （全 ${posts_count} 件)<br />
+
             <c:forEach var="i" begin="1" end="${((posts_count - 1) / 15) + 1}" step="1">
                 <c:choose>
                     <c:when test="${i == page}">
@@ -54,6 +56,8 @@
                 </c:choose>
             </c:forEach>
         </div>
+
+        <p><a href="<c:url value='/users/index' />">戻る</a></p>
 
 
     </c:param>

@@ -52,8 +52,12 @@
 
 a {
   text-decoration: none;
-  color: #2d3133;
+  color: #24738e;
   font-size: 14px;
+}
+
+a:hover{
+    color:#FF0000;
 }
 
 h1, h2, h3, h4, h5, h6,{
