@@ -6,6 +6,7 @@
         <c:choose>
             <c:when test="${post != null}">
                 <h2>購入品 詳細</h2>
+                <br /><br />
 
                 <table>
                     <tbody>
@@ -22,7 +23,7 @@
                             <td><c:out value="${post.brandName}" /></td>
                         </tr>
                         <tr>
-                            <th>値段</th>
+                            <th>値段(円)</th>
                             <td><c:out value="${post.price}" /></td>
                         </tr>
                         <tr>
@@ -71,8 +72,9 @@
                 </c:if>
 
                 <c:if test="${sessionScope.login_user.id == post.user.id}">
-                    <p><a href="<c:url value="/posts/edit?id=${post.id}" />">この投稿を編集する</a></p>
+                    <p><a href="<c:url value="/posts/edit?id=${post.id}" />">投稿を編集する</a></p>
                 </c:if>
+
             </c:when>
             <c:otherwise>
                 <h2>お探しのデータは見つかりませんでした。</h2>

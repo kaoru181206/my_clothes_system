@@ -41,7 +41,7 @@ public class PostsShowServlet extends HttpServlet {
         request.setAttribute("post", p);
         request.setAttribute("_token", request.getSession().getId());
 
-        //セッションスコープにレポートのIDをセット
+        //セッションスコープに投稿のIDをセット
         request.getSession().setAttribute("post_id", p.getId());
 
         //確認

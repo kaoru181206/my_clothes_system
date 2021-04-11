@@ -22,7 +22,7 @@
 <input type="text" name="brandName" value="${post.brandName}" />
 <br /><br />
 
-<label for="price">値段</label><br />
+<label for="price">値段(円)</label><br />
 <input type="text" name="price" value="${post.price}" />
 <br /><br />
 

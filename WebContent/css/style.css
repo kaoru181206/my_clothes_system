@@ -32,7 +32,7 @@ h2 {
     border-bottom: 6px double #000;
 }
 
-}
+
 
 
 li {
@@ -172,6 +172,28 @@ h1 {
     font-size: 24px;
     display: inline;
 }
+
+#header_menu h1{
+    font-size: 24px;
+    display: inline;
+}
+
+#header_menu a{
+    font-size: 17px;
+}
+
+
+#header_menu h1 a{
+    width: 94%;
+    padding-top: 17px;
+    padding-left: 3%;
+    font-size: 24px;
+    color: #eeeeee;
+    font-weight: 10px;
+}
+
+
+
 
 
 
