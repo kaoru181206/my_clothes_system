@@ -44,8 +44,7 @@ public class PostsShowServlet extends HttpServlet {
         //セッションスコープに投稿のIDをセット
         request.getSession().setAttribute("post_id", p.getId());
 
-        //確認
-        System.out.println("セッション中のpost_id"+request.getSession().getAttribute("post_id"));
+
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/posts/show.jsp");
         rd.forward(request, response);

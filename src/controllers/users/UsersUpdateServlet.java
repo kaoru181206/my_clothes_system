@@ -36,59 +36,56 @@ public class UsersUpdateServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String _token = request.getParameter("_token");
-        if(_token != null && _token.equals(request.getSession().getId())) {
-            EntityManager em = DBUtil.createEntityManager();
+            if(_token != null && _token.equals(request.getSession().getId())) {
+                EntityManager em = DBUtil.createEntityManager();
 
-            User u = em.find(User.class, (Integer)(request.getSession().getAttribute("user_id")));
+                User u = em.find(User.class, (Integer)(request.getSession().getAttribute("user_id")));
 
-            // 現在の値と異なるユーザーIDが入力されていたら
-            // 重複チェックを行う指定をする
-            Boolean codeDuplicateCheckFlag = true;
-            if(u.getCode().equals(request.getParameter("code"))) {
-                codeDuplicateCheckFlag = false;
-            } else {
-                u.setCode(request.getParameter("code"));
-            }
+                // 現在の値と異なるユーザーIDが入力されていたら
+                // 重複チェックを行う指定をする
+                Boolean codeDuplicateCheckFlag = true;
+                    if(u.getCode().equals(request.getParameter("code"))) {
+                        codeDuplicateCheckFlag = false;
+                    } else {
+                        u.setCode(request.getParameter("code"));
+                    }
 
-            // パスワード欄に入力があったら
-            // パスワードの入力値チェックを行う指定をする
-            Boolean passwordCheckFlag = true;
-            String password = request.getParameter("password");
-            if(password == null || password.equals("")) {
-                passwordCheckFlag = false;
-            } else {
-                u.setPassword(
-                        EncryptUtil.getPasswordEncrypt(
-                                password,
-                                (String)this.getServletContext().getAttribute("pepper")
-                                )
-                        );
-            }
+                    // パスワード欄に入力があったら
+                    // パスワードの入力値チェックを行う指定をする
+                    Boolean passwordCheckFlag = true;
+                    String password = request.getParameter("password");
+                        if(password == null || password.equals("")) {
+                            passwordCheckFlag = false;
+                        } else {
+                            u.setPassword(
+                                    EncryptUtil.getPasswordEncrypt(password,(String)this.getServletContext().getAttribute("pepper"))
+                            );
+                        }
 
-            u.setName(request.getParameter("name"));
-            u.setDelete_flag(0);
+                    u.setName(request.getParameter("name"));
+                    u.setDelete_flag(0);
 
-            List<String> errors = UserValidator.validate(u, codeDuplicateCheckFlag, passwordCheckFlag);
-            if(errors.size() > 0) {
-                em.close();
+                    List<String> errors = UserValidator.validate(u, codeDuplicateCheckFlag, passwordCheckFlag);
+                        if(errors.size() > 0) {
+                            em.close();
 
-                request.setAttribute("_token", request.getSession().getId());
-                request.setAttribute("user", u);
-                request.setAttribute("errors", errors);
+                            request.setAttribute("_token", request.getSession().getId());
+                            request.setAttribute("user", u);
+                            request.setAttribute("errors", errors);
 
-                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/users/edit.jsp");
-                rd.forward(request, response);
-            } else {
-                em.getTransaction().begin();
-                em.getTransaction().commit();
-                em.close();
-                request.getSession().setAttribute("flush", "アカウント情報を更新しました。再度ログインしてください。");
+                            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/users/edit.jsp");
+                            rd.forward(request, response);
+                        } else {
+                            em.getTransaction().begin();
+                            em.getTransaction().commit();
+                            em.close();
+                            request.getSession().setAttribute("flush", "アカウント情報を更新しました。再度ログインしてください。");
 
-                request.getSession().removeAttribute("user_id");
+                            request.getSession().removeAttribute("user_id");
 
-                response.sendRedirect(request.getContextPath() + "/logout");
+                            response.sendRedirect(request.getContextPath() + "/logout");
+                        }
             }
         }
-    }
 
 }

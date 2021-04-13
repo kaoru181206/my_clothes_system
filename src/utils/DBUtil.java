@@ -6,6 +6,7 @@ import javax.persistence.Persistence;
 
 public class DBUtil {
     private static final String PERSISTENCE_UNIT_NAME = "my_clothes_system";
+
     private static EntityManagerFactory emf;
 
     public static EntityManager createEntityManager() {

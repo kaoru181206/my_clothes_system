@@ -13,21 +13,21 @@ public class UserValidator {
         List<String> errors = new ArrayList<String>();
 
         String code_error = validateCode(u.getCode(), codeDuplicateCheckFlag);
-        if(!code_error.equals("")) {
-            errors.add(code_error);
-        }
+            if(!code_error.equals("")) {
+                errors.add(code_error);
+            }
 
         String name_error = validateName(u.getName());
-        if(!name_error.equals("")) {
-            errors.add(name_error);
-        }
+            if(!name_error.equals("")) {
+                errors.add(name_error);
+            }
 
         String password_error = validatePassword(u.getPassword(), passwordCheckFlag);
-        if(!password_error.equals("")) {
-            errors.add(password_error);
-        }
+            if(!password_error.equals("")) {
+                errors.add(password_error);
+            }
 
-        return errors;
+            return errors;
     }
 
     // ユーザーID
@@ -42,9 +42,9 @@ public class UserValidator {
             EntityManager em = DBUtil.createEntityManager();
             long employees_count = (long)em.createNamedQuery("checkRegisteredCode", Long.class).setParameter("code", code).getSingleResult();
             em.close();
-            if(employees_count > 0) {
-                return "入力されたユーザーIDの情報はすでに存在しています。";
-            }
+                if(employees_count > 0) {
+                    return "入力されたユーザーIDの情報はすでに存在しています。";
+                }
         }
 
         return "";

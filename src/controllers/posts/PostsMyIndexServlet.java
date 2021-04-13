@@ -36,7 +36,7 @@ public class PostsMyIndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
-        User login_user = (User)request.getSession().getAttribute("login_user");
+        User loginUser = (User)request.getSession().getAttribute("login_user");
 
         int page;
         try{
@@ -45,13 +45,13 @@ public class PostsMyIndexServlet extends HttpServlet {
             page = 1;
         }
         List<Post> posts = em.createNamedQuery("getMyAllPosts", Post.class)
-                                  .setParameter("user", login_user)
+                                  .setParameter("user", loginUser)
                                   .setFirstResult(15 * (page - 1))
                                   .setMaxResults(15)
                                   .getResultList();
 
         long posts_count = (long)em.createNamedQuery("getMyPostsCount", Long.class)
-                                     .setParameter("user", login_user)
+                                     .setParameter("user", loginUser)
                                      .getSingleResult();
 
         em.close();

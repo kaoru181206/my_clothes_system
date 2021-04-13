@@ -37,42 +37,42 @@ public class PostsUpdateServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String _token = request.getParameter("_token");
-        if(_token != null && _token.equals(request.getSession().getId())) {
-            EntityManager em = DBUtil.createEntityManager();
+            if(_token != null && _token.equals(request.getSession().getId())) {
+                EntityManager em = DBUtil.createEntityManager();
 
-            Post p = em.find(Post.class, (Integer)(request.getSession().getAttribute("post_id")));
+                Post p = em.find(Post.class, (Integer)(request.getSession().getAttribute("post_id")));
 
-            p.setPurchase_date(Date.valueOf(request.getParameter("purchase_date")));
+                p.setPurchase_date(Date.valueOf(request.getParameter("purchase_date")));
 
-            p.setBrandName(request.getParameter("brandName"));
-            p.setPrice(Integer.parseInt(request.getParameter("price")));
-            p.setCategory(Integer.parseInt(request.getParameter("category")));
-            p.setContent(request.getParameter("content"));
-            p.setUpdated_at(new Timestamp(System.currentTimeMillis()));
+                p.setBrandName(request.getParameter("brandName"));
+                p.setPrice(Integer.parseInt(request.getParameter("price")));
+                p.setCategory(Integer.parseInt(request.getParameter("category")));
+                p.setContent(request.getParameter("content"));
+                p.setUpdated_at(new Timestamp(System.currentTimeMillis()));
 
 
-            List<String> errors = PostValidator.validate(p);
-            if(errors.size() > 0) {
-                em.close();
+                List<String> errors = PostValidator.validate(p);
+                    if(errors.size() > 0) {
+                        em.close();
 
-                request.setAttribute("_token", request.getSession().getId());
-                request.setAttribute("post", p);
-                request.setAttribute("errors", errors);
+                        request.setAttribute("_token", request.getSession().getId());
+                        request.setAttribute("post", p);
+                        request.setAttribute("errors", errors);
 
-                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/posts/edit.jsp");
-                rd.forward(request, response);
+                        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/posts/edit.jsp");
+                        rd.forward(request, response);
 
-            }else{
-                em.getTransaction().begin();
-                em.getTransaction().commit();
-                em.close();
-                request.getSession().setAttribute("flush", "更新が完了しました。");
+                    }else{
+                        em.getTransaction().begin();
+                        em.getTransaction().commit();
+                        em.close();
+                        request.getSession().setAttribute("flush", "更新が完了しました。");
 
-                request.getSession().removeAttribute("post_id");
+                        request.getSession().removeAttribute("post_id");
 
-                response.sendRedirect(request.getContextPath() + "/posts/index");
+                        response.sendRedirect(request.getContextPath() + "/posts/index");
+                    }
             }
-        }
 
     }
 

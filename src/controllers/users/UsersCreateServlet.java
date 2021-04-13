@@ -36,41 +36,38 @@ public class UsersCreateServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String _token = request.getParameter("_token");
-        if(_token != null && _token.equals(request.getSession().getId())) {
-            EntityManager em = DBUtil.createEntityManager();
+            if(_token != null && _token.equals(request.getSession().getId())) {
+                EntityManager em = DBUtil.createEntityManager();
 
-            User u = new User();
+                User u = new User();
 
-            u.setCode(request.getParameter("code"));
-            u.setName(request.getParameter("name"));
-            u.setPassword(
-                    EncryptUtil.getPasswordEncrypt(
-                            request.getParameter("password"),
-                                (String)this.getServletContext().getAttribute("pepper")
-                          )
-                    );
+                u.setCode(request.getParameter("code"));
+                u.setName(request.getParameter("name"));
+                u.setPassword(
+                        EncryptUtil.getPasswordEncrypt(request.getParameter("password"),(String)this.getServletContext().getAttribute("pepper")));
 
-            u.setDelete_flag(0);
+                u.setDelete_flag(0);
 
-            List<String> errors = UserValidator.validate(u, true, true);
-            if(errors.size() > 0) {
-                em.close();
+                List<String> errors = UserValidator.validate(u, true, true);
+                    if(errors.size() > 0) {
+                        em.close();
 
-                request.setAttribute("_token", request.getSession().getId());
-                request.setAttribute("user", u);
-                request.setAttribute("errors", errors);
+                        request.setAttribute("_token", request.getSession().getId());
+                        request.setAttribute("user", u);
+                        request.setAttribute("errors", errors);
 
-                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/users/new.jsp");
-                rd.forward(request, response);
-            }else{
-                em.getTransaction().begin();
-                em.persist(u);
-                em.getTransaction().commit();
-                request.getSession().setAttribute("flush", "登録完了 ログインしてください。");
-                em.close();
+                        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/users/new.jsp");
+                        rd.forward(request, response);
+                    }else{
+                        em.getTransaction().begin();
+                        em.persist(u);
+                        em.getTransaction().commit();
+                        request.getSession().setAttribute("flush", "登録完了 ログインしてください。");
+                        em.close();
 
-                response.sendRedirect(request.getContextPath()+"/login");
+                        response.sendRedirect(request.getContextPath()+"/login");
+                    }
+
             }
-
-  }
-    }}
+    }
+}

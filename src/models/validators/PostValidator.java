@@ -12,21 +12,21 @@ public class PostValidator {
         List<String> errors = new ArrayList<String>();
 
         String brandName_error = _validateBrandName(p.getBrandName());
-        if(!brandName_error.equals("")) {
-            errors.add(brandName_error);
-        }
+            if(!brandName_error.equals("")) {
+                errors.add(brandName_error);
+            }
 
         String content_error = _validateContent(p.getContent());
-        if(!content_error.equals("")){
-            errors.add(content_error);
-        }
+            if(!content_error.equals("")){
+                errors.add(content_error);
+            }
 
         String price_error = _validatePrice(p.getPrice());
-        if(!price_error.equals("")){
-            errors.add(price_error);
-        }
+            if(!price_error.equals("")){
+                errors.add(price_error);
+            }
 
-        return errors;
+            return errors;
 
     }
 

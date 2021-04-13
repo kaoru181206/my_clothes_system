@@ -32,21 +32,21 @@ public class UsersDestroyServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String _token = request.getParameter("_token");
-        if(_token != null && _token.equals(request.getSession().getId())) {
-            EntityManager em = DBUtil.createEntityManager();
+            if(_token != null && _token.equals(request.getSession().getId())) {
+                EntityManager em = DBUtil.createEntityManager();
 
-            User u = em.find(User.class, (Integer)(request.getSession().getAttribute("user_id")));
+                User u = em.find(User.class, (Integer)(request.getSession().getAttribute("user_id")));
 
 
-            em.getTransaction().begin();
-            em.remove(u);
-            em.getTransaction().commit();
-            em.close();
+                em.getTransaction().begin();
+                em.remove(u);
+                em.getTransaction().commit();
+                em.close();
 
-            request.getSession().setAttribute("flush", "削除が完了しました。");
+                request.getSession().setAttribute("flush", "削除が完了しました。");
 
-            response.sendRedirect(request.getContextPath() + "/logout");
-        }
+                response.sendRedirect(request.getContextPath() + "/logout");
+            }
     }
 
 

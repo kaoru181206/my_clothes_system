@@ -39,12 +39,12 @@ public class PostsEditServlet extends HttpServlet {
 
         em.close();
 
-        User login_user = (User)request.getSession().getAttribute("login_user");
-        if(p != null && login_user.getId() == p.getUser().getId()) {
-            request.setAttribute("post", p);
-            request.setAttribute("_token", request.getSession().getId());
-            request.getSession().setAttribute("report_id", p.getId());
-        }
+        User loginUser = (User)request.getSession().getAttribute("login_user");
+            if(p != null && loginUser.getId() == p.getUser().getId()) {
+                request.setAttribute("post", p);
+                request.setAttribute("_token", request.getSession().getId());
+                request.getSession().setAttribute("report_id", p.getId());
+            }
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/posts/edit.jsp");
         rd.forward(request, response);

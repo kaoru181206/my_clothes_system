@@ -38,54 +38,54 @@ public class PostsCreateServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String _token = request.getParameter("_token");
-        if(_token != null && _token.equals(request.getSession().getId())) {
-            EntityManager em = DBUtil.createEntityManager();
+            if(_token != null && _token.equals(request.getSession().getId())) {
+                EntityManager em = DBUtil.createEntityManager();
 
-            Post p = new Post();
+                Post p = new Post();
 
-            p.setUser((User)request.getSession().getAttribute("login_user"));
+                p.setUser((User)request.getSession().getAttribute("login_user"));
 
-            Date purchase_date = new Date(System.currentTimeMillis());
-            String rd_str = request.getParameter("purchase_date");
-            if(rd_str != null && !rd_str.equals("")) {
-                purchase_date = Date.valueOf(request.getParameter("purchase_date"));
-            }
+                Date purchaseDate = new Date(System.currentTimeMillis());
+                String purchaseDateStr = request.getParameter("purchase_date");
+                if(purchaseDateStr != null && !purchaseDateStr.equals("")) {
+                    purchaseDate = Date.valueOf(request.getParameter("purchase_date"));
+                }
 
-            p.setPurchase_date(purchase_date);
+                p.setPurchase_date(purchaseDate);
 
-            p.setBrandName(request.getParameter("brandName"));
-            p.setPrice(Integer.parseInt(request.getParameter("price")));
-            p.setCategory(Integer.parseInt(request.getParameter("category")));
-            p.setContent(request.getParameter("content"));
+                p.setBrandName(request.getParameter("brandName"));
+                p.setPrice(Integer.parseInt(request.getParameter("price")));
+                p.setCategory(Integer.parseInt(request.getParameter("category")));
+                p.setContent(request.getParameter("content"));
 
-          //いいね数に初期値０を設定
-            p.setLikes(0);
+                //いいね数に初期値０を設定
+                p.setLikes(0);
 
 
-            Timestamp currentTime = new Timestamp(System.currentTimeMillis());
-            p.setCreated_at(currentTime);
-            p.setUpdated_at(currentTime);
+                Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+                p.setCreated_at(currentTime);
+                p.setUpdated_at(currentTime);
 
-            List<String> errors = PostValidator.validate(p);
-            if(errors.size() > 0) {
-                em.close();
+                List<String> errors = PostValidator.validate(p);
+                    if(errors.size() > 0) {
+                        em.close();
 
-                request.setAttribute("_token", request.getSession().getId());
-                request.setAttribute("post", p);
-                request.setAttribute("errors", errors);
+                        request.setAttribute("_token", request.getSession().getId());
+                        request.setAttribute("post", p);
+                        request.setAttribute("errors", errors);
 
-                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/posts/new.jsp");
-                rd.forward(request, response);
-            } else {
-                em.getTransaction().begin();
-                em.persist(p);
-                em.getTransaction().commit();
-                em.close();
-                request.getSession().setAttribute("flush", "投稿が完了しました。");
+                        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/posts/new.jsp");
+                        rd.forward(request, response);
+                    } else {
+                        em.getTransaction().begin();
+                        em.persist(p);
+                        em.getTransaction().commit();
+                        em.close();
+                        request.getSession().setAttribute("flush", "投稿が完了しました。");
 
-                response.sendRedirect(request.getContextPath() + "/posts/index");
+                        response.sendRedirect(request.getContextPath() + "/posts/index");
+                    }
             }
         }
-    }
 
 }

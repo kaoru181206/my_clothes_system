@@ -37,8 +37,7 @@ public class LikesCreateServlet extends HttpServlet {
 
        EntityManager em = DBUtil.createEntityManager();
 
-       // 確認
-       System.out.println("セッション中のpost_id :" + request.getSession().getAttribute("post_id"));
+
 
        // セッションスコープからレポートのIDを取得して、該当のレポートIDのレポートをデータベースから取得
        Post p = em.find(Post.class, (Integer) (request.getSession().getAttribute("post_id")));
