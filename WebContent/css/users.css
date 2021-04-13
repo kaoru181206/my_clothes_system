@@ -13,6 +13,8 @@
 }
 
 
+
+
 .form-body {
   padding: 30px;
   margin-top: 25px;
@@ -49,6 +51,7 @@
   padding-left: 15px;
   padding-right: 15px;
   clear: both;
+
 }
 
 a {
@@ -62,7 +65,7 @@ a:hover{
 }
 
 h1, h2, h3, h4, h5, h6,{
-  margin: 0;
+  margin: 0px;
   color:#000000;
 }
 

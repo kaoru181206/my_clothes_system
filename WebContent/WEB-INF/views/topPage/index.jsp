@@ -6,9 +6,10 @@
 <meta charset="UTF-8">
 <title>My Clothes</title>
 <link rel="stylesheet" href="<c:url value='/css/topPage.css' />">
+
 </head>
 <body>
-<div class = "main top-main">
+<div class = "top-main">
     <div class = "top-message">
         <h2>My Clothes</h2>
     </div>
